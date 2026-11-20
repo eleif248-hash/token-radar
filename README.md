@@ -21,9 +21,10 @@ implied value = comps(TVL, category) x momentum(7d) x runway(days with no token)
 **The dashboard** has three views:
 - **Board**: sortable columns; filters by search, family, chain, TVL floor, scope, rising 7d and drop-vs-cost; an implied-value range bar on every row.
 - **Detail** for every protocol: a value waterfall, the trading comparables, and the farm plan with each step's cost and time.
-- **Already trading** and **Method**: the backtest scatter and the family multiples.
+- **Pins and Compare**: star protocols with ☆ and line up to four side by side, with the best figure in each row marked.
+- **Already trading** and **Method**: the backtest scatter, the family multiples, and a **sandbox** of sliders for the model's constants. Moving a slider re-runs `buildRadar` and shows how far each row moved from its shipped rank. `board.json` keeps the shipped constants.
 
-The view state lives in the URL hash.
+The view state (tab, filters, sort, open protocol, pins, sandbox) lives in the URL hash.
 
 ## Run it
 

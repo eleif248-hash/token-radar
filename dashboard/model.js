@@ -1,15 +1,6 @@
-/* Token Radar model, radar-comps-1. One file, run twice: main.ts requires it to write board.json, and the
- * page loads it to draw the board, so every figure on screen comes from the same functions.
- *
- * implied value = comps(TVL, category) x momentum(7d) x runway(days with no token) x family discount
- *   comps:    what tokens that already trade fetch per dollar of TVL, fitted on this snapshot's own
- *             token-bearing protocols: a size elasticity pooled within families, then a log mcap/TVL
- *             intercept per category shrunk toward its family and the market (see fitComparables).
- *   momentum: (1 + 7d change)^0.5, the change clamped to -50%..+100%: a damped, one-week signal.
- *   runway:   0.75 at day 0 rising to 1.15 at two years with no token: a longer record behind the launch.
- *   discount: x0.5 when DefiLlama names a parent (above the floor yet off the watchlist), x0.4 when a
- *             protocol of the same slug family already has a trading token.
- */
+/* Token Radar model, radar-comps-1. main.ts requires it to write board.json and the page loads it to draw
+ * the board, so every figure on screen comes from these functions.
+ * implied value = comps(TVL, category) x momentum(7d) x runway(days with no token) x family discount */
 (function (root, factory) {
   const api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
@@ -287,10 +278,8 @@
   }
 
   function summary(fit) {
-    const cats = Object.entries(fit.sums.cat).map(([cat, b]) => ({ category: cat, family: b.fam, n: b.n, multiple_at_100m: Math.exp(intercept(fit, cat, b.fam) + fit.e * Math.log(1e8)) / 1e8 }));
-    cats.sort((a, b) => b.n - a.n || (a.category < b.category ? -1 : 1));
     const fams = Object.keys(FAMILIES).concat('Other').map((f) => ({ family: f, n: (fit.sums.fam[f] || { n: 0 }).n, multiple_at_100m: Math.exp(intercept(fit, '\u0000', f) + fit.e * Math.log(1e8)) / 1e8, sd: fit.sd[f] || fit.sdAll }));
-    return { elasticity: fit.e, raw_elasticity: fit.rawE, n: fit.n, categories: cats, families: fams };
+    return { elasticity: fit.e, raw_elasticity: fit.rawE, n: fit.n, families: fams };
   }
 
   const round = (x, d) => Math.round(x * 10 ** d) / 10 ** d;
