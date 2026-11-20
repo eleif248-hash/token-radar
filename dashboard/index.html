@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar · pre-token protocols ranked by implied launch value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#tab=board" aria-label="Token Radar, back to the board">
+    <svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true"><circle cx="20" cy="20" r="18" class="ring"/><circle cx="20" cy="20" r="11" class="ring"/><circle cx="20" cy="20" r="4" class="ring"/><path d="M20 20 L34 9" class="sweep"/><circle cx="29" cy="13" r="2.4" class="blip"/><circle cx="12" cy="26" r="1.8" class="blip dim"/></svg>
+    <span><b>Token Radar</b><small id="sub">loading the snapshot</small></span>
+  </a>
+  <nav class="tabs" aria-label="Views">
+    <a href="#tab=board" data-tab="board">Board</a>
+    <a href="#tab=trading" data-tab="trading">Already trading</a>
+    <a href="#tab=method" data-tab="method">Method</a>
+  </nav>
+</header>
+<section id="kpis" class="kpis" aria-label="Headline figures"></section>
+<main id="view" tabindex="-1"></main>
+<div id="scrim" class="scrim" hidden></div>
+<aside id="detail" class="detail" hidden aria-label="Protocol detail"></aside>
+<footer class="foot">Implied values are this radar's own estimate from the snapshot's figures, not a forecast that a token will launch. "Records no token" means DefiLlama's record carries none, not that none exists.</footer>
+<!-- data.js is the sealed snapshot, which main.ts writes beside this page; model.js is the model main.ts runs. -->
+<script src="../data.js"></script>
+<script src="model.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
