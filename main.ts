@@ -49,6 +49,7 @@ function readSnapshot(file: string): Snapshot {
       if (!Array.isArray(o.chains)) o.chains = [];
       if (!Number.isFinite(o.change_7d)) o.change_7d = null;
       if (!Number.isFinite(o.mcap_usd)) o.mcap_usd = null;
+      if (typeof o.listed_at !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(o.listed_at)) o.listed_at = null;
       return o as Protocol;
     });
   return { as_of: String(raw.as_of), source: String(raw.source ?? ''), floor_usd: Number(raw.floor_usd) || 50_000_000, protocols, watchlist: raw.watchlist.filter((s: unknown) => typeof s === 'string') };

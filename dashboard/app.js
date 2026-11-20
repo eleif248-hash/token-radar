@@ -185,7 +185,7 @@
     detail.innerHTML = `<button class="close" type="button" id="d-close">Close ✕</button>
 <div class="meta">Rank #${r.rank} of ${R.rows.length} · ${esc(r.category || 'Uncategorised')} · ${r.family} family</div>
 <h2>${esc(r.name)}${badges(r)}</h2>
-<div class="meta">${esc(r.chains.join(' · ') || 'no chain listed')} · tracked since ${r.listed_at || 'unknown'} · DefiLlama records no token</div>
+<div class="meta">${esc(r.chains.join(' · ') || 'no chain listed')} · tracked since ${esc(r.listed_at || 'unknown')} · DefiLlama records no token</div>
 <div class="hero"><div><span>Implied value</span><b>${money(r.implied_value_usd)}</b></div><div class="alt"><span>Middle-half range</span><b>${money(r.value_low_usd)} – ${money(r.value_high_usd)}</b></div><div class="alt"><span>TVL · 7d</span><b>${money(r.tvl_usd)} <span class="${trend(r.change_7d)}" style="display:inline">${pct(r.change_7d)}</span></b></div><div class="alt"><span>Est. drop on ${money(f.capital_usd)} · vs cost</span><b class="${f.edge >= 1 ? 'up' : 'down'}">${money(f.drop_usd)} · ${f.edge.toFixed(1)}×</b></div></div>
 <p class="meta" style="margin:12px 0 0">${esc(reading(r))}</p>
 <div class="dgrid"><section>
